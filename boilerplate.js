@@ -39,7 +39,7 @@ async function install (context) {
 
   const name = parameters.third
   const spinner = print
-    .spin(`using the ${red('Infinite Red')} boilerplate v3 (code name 'Bowser')`)
+    .spin(`using the ${blue('Alex')} boilerplate v0-beta (code name '${yellow('Peach')}')`)
     .succeed()
 
   // attempt to install React Native or die trying
@@ -159,14 +159,12 @@ async function install (context) {
   try {
     // boilerplate adds itself to get plugin.js/generators etc
     // Could be directory, npm@version, or just npm name.  Default to passed in values
-    const boilerplate = parameters.options.b || parameters.options.boilerplate || 'ignite-ir-boilerplate-bowser'
-
+    const boilerplate = parameters.options.b || parameters.options.boilerplate || 'my-shit-boilerplate'
     await system.spawn(`ignite add ${boilerplate} ${debugFlag}`, { stdio: 'inherit' })
   } catch (e) {
     ignite.log(e)
     throw e
   }
-
   // git configuration
   const gitExists = await filesystem.exists('./.git')
   if (!gitExists && !parameters.options['skip-git'] && system.which('git')) {

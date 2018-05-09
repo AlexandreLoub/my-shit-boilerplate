@@ -1,15 +1,9 @@
 import "../i18n"
 import * as React from "react"
-import { setupRootStore } from "./setup-root-store"
-import { StatefulNavigator } from "../navigation"
-import { RootStore } from "../models/root-store"
-import { Provider } from "mobx-react"
-import { BackButtonHandler } from "../navigation/back-button-handler"
 import { contains } from "ramda"
-import { DEFAULT_NAVIGATION_CONFIG } from "../navigation/navigation-config"
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 interface RootComponentState {
-  rootStore?: RootStore
 }
 
 /**
@@ -22,7 +16,6 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
    */
   async componentDidMount() {
     this.setState({
-      rootStore: await setupRootStore(),
     })
   }
 
@@ -33,7 +26,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
    * @param routeName The currently active route name.
    */
   canExit(routeName: string) {
-    return contains(routeName, DEFAULT_NAVIGATION_CONFIG.exitRoutes)
+    return false
   }
 
   render() {
@@ -47,9 +40,11 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
     //
     // You're welcome to swap in your own component to render if your boot up
     // sequence is too slow though.
+/*
     if (!rootStore) {
       return null
     }
+*/
 
     // otherwise, we're ready to render the app
 
@@ -58,11 +53,31 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
     // --- am: end list of stores ---
 
     return (
-      <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
-        <BackButtonHandler canExit={this.canExit}>
-          <StatefulNavigator />
-        </BackButtonHandler>
-      </Provider>
+        <Container>
+            <Header>
+                <Left>
+                    <Button transparent>
+                        <Icon name='menu' />
+                    </Button>
+                </Left>
+                <Body>
+                <Title>Header</Title>
+                </Body>
+                <Right />
+            </Header>
+            <Content>
+                <Text>
+                    This is Content Section
+                </Text>
+            </Content>
+            <Footer>
+                <FooterTab>
+                    <Button full>
+                        <Text>Footer</Text>
+                    </Button>
+                </FooterTab>
+            </Footer>
+        </Container>
     )
   }
 }

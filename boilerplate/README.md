@@ -22,6 +22,20 @@
     * Run Genymotion
     * run `react-native run-android`
 
+## :arrow_forward: How to Run Storybook
+
+1. cd to the repo
+2. Run Build for either OS
+   * for iOS
+     * run `react-native run-ios`
+   * for Android
+     * Run Genymotion
+     * run `react-native run-android`
+3. Run Storybook `npm run storybook`
+4. Open `http://localhost:9001` in your browser 
+4. If can't access to port 9001
+   * `adb reverse tcp:9001 tcp:9001`
+
 ## :no_entry_sign: Standard Compliant
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
